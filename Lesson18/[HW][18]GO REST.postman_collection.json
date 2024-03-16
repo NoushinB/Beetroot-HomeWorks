@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "fe31ac59-63cf-4fd2-b614-89aab7df1dfe",
+		"name": "[HW][18]GO REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33436424"
+	},
+	"item": [
+		{
+			"name": "Create a new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"verify 422 status for existing user\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});\r",
+							"pm.test(\"response body has json with error fields\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    jsonData.forEach(function(item) {\r",
+							"        if(item.field === \"email\") {\r",
+							"            pm.expect(item.field).to.eql(\"email\");\r",
+							"        }\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Negative Test - No Error Message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    jsonData.forEach(function(item) {\r",
+							"        if(item.field === \"email\") {\r",
+							"            pm.expect(item.message).to.not.eql(\"No error\");\r",
+							"        }\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Tenali Ramakrishna\",\r\n    \"gender\":\"{{user_gender_male}}\",\r\n    \"email\":\"tenali.ramakrishna@15ce.com\",\r\n    \"status\":\"{{user_status_active}}\"\r\n       }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{users_base_url}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{users_base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify 200 status for valid id\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Negative Test - Invalid Gender\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.gender).to.not.eql(\"female\");\r",
+							"});\r",
+							"pm.test(\"Negative Test - Invalid Status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.not.eql(\"inactive\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{users_base_url}}/6777872",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{users_base_url}}",
+						"6777872"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response includes 'id'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('id');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"var expectedId = 6777872; // Change this to the ID you want to test\r",
+							"\r",
+							"pm.test(\"Response 'id' is \" + expectedId, function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(expectedId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Allasani Peddana\",\r\n    \"email\":\"allasani1.peddana@15ce.com\",\r\n    \"status\":\"{{user_status_active}}\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{users_base_url}}/6777872",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{users_base_url}}",
+						"6777872"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body is empty\", function () {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response includes 'Resource not found'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Resource not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{users_base_url}}/6777869",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{users_base_url}}",
+						"6777869"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

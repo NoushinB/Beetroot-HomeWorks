@@ -1,0 +1,182 @@
+{
+	"id": "3ca92f4b-b806-44cf-b9be-64d46e0ac863",
+	"name": "[HW][18]GO REST",
+	"timestamp": "2024-03-13T14:20:28.038Z",
+	"collection_id": "33436424-fe31ac59-63cf-4fd2-b614-89aab7df1dfe",
+	"folder_id": 0,
+	"environment_id": "33436424-4d79f114-f88d-4ca0-b5b7-9587d5661e0d",
+	"totalPass": 9,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-03-13T14:20:25.872Z",
+	"totalFail": 1,
+	"results": [
+		{
+			"id": "0390f6b3-b969-424c-a474-6f3d20de1150",
+			"name": "Create a new user",
+			"url": "https://gorest.co.in//public/v2/users",
+			"time": 321,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"verify 422 status for existing user": true,
+				"response body has json with error fields": true,
+				"Negative Test - No Error Message": true
+			},
+			"testPassFailCounts": {
+				"verify 422 status for existing user": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response body has json with error fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Negative Test - No Error Message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				321
+			],
+			"allTests": [
+				{
+					"verify 422 status for existing user": true,
+					"response body has json with error fields": true,
+					"Negative Test - No Error Message": true
+				}
+			]
+		},
+		{
+			"id": "ec73b956-a16d-4dcb-9067-897371a26a32",
+			"name": "Get user details",
+			"url": "https://gorest.co.in//public/v2/users/6777872",
+			"time": 287,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify 200 status for valid id": true,
+				"Negative Test - Invalid Gender": true,
+				"Negative Test - Invalid Status": true
+			},
+			"testPassFailCounts": {
+				"Verify 200 status for valid id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Negative Test - Invalid Gender": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Negative Test - Invalid Status": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				287
+			],
+			"allTests": [
+				{
+					"Verify 200 status for valid id": true,
+					"Negative Test - Invalid Gender": true,
+					"Negative Test - Invalid Status": true
+				}
+			]
+		},
+		{
+			"id": "0c759f5b-ca74-452d-8d85-f7542237600c",
+			"name": "Update user",
+			"url": "https://gorest.co.in//public/v2/users/6777872",
+			"time": 336,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response includes 'id'": true,
+				"Response 'id' is 6777872": true
+			},
+			"testPassFailCounts": {
+				"Response includes 'id'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response 'id' is 6777872": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				336
+			],
+			"allTests": [
+				{
+					"Response includes 'id'": true,
+					"Response 'id' is 6777872": true
+				}
+			]
+		},
+		{
+			"id": "1756f6a5-bbfc-4ecd-adb8-b40019bc4350",
+			"name": "New Request",
+			"url": "https://gorest.co.in//public/v2/users/6777869",
+			"time": 236,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Response body is empty": false,
+				"Response includes 'Resource not found'": true
+			},
+			"testPassFailCounts": {
+				"Response body is empty": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Response includes 'Resource not found'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				236
+			],
+			"allTests": [
+				{
+					"Response body is empty": false,
+					"Response includes 'Resource not found'": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1180,
+	"collection": {
+		"requests": [
+			{
+				"id": "0390f6b3-b969-424c-a474-6f3d20de1150",
+				"method": "POST"
+			},
+			{
+				"id": "ec73b956-a16d-4dcb-9067-897371a26a32",
+				"method": "GET"
+			},
+			{
+				"id": "0c759f5b-ca74-452d-8d85-f7542237600c",
+				"method": "PATCH"
+			},
+			{
+				"id": "1756f6a5-bbfc-4ecd-adb8-b40019bc4350",
+				"method": "DELETE"
+			}
+		]
+	}
+}

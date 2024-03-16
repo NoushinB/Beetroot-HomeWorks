@@ -1,0 +1,7 @@
+1.   
+https://beetrootqa2024.testrail.io/index.php?/suites/view/46&group_by=cases:section_id&group_order=asc&display_deleted_cases=0
+
+2. 
+https://beetrootqa2024.testrail.io/index.php?/suites/view/38&group_by=cases:section_id&group_order=asc&display_deleted_cases=0
+
+3. https://docs.google.com/document/d/1onAWLNNC04MfTJh_kVh4RfHV3pBq1yeSvsXgAjP0UiY/edit
